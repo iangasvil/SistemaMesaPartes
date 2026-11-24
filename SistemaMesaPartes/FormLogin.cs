@@ -11,21 +11,20 @@ namespace SistemaMesaPartes
         public FormLogin()
         {
             InitializeComponent();
+            AsegurarAdminPorDefecto();
         }
 
-        private bool ValidarCampos(string usuario, string clave)
+        // Crea el usuario maestro "admin" si aún no existe en usuarios.dat
+        private void AsegurarAdminPorDefecto()
         {
-            if (string.IsNullOrWhiteSpace(usuario) || string.IsNullOrWhiteSpace(clave))
+            if (UsuarioExiste("admin")) return;
+
+            using (FileStream fs = new FileStream(rutaUsuarios, FileMode.Append, FileAccess.Write))
+            using (BinaryWriter bw = new BinaryWriter(fs))
             {
-                MessageBox.Show("Por favor, complete usuario y contraseña.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                bw.Write("admin");
+                bw.Write("admin123");
             }
-            if (clave.Length < 4)
-            {
-                MessageBox.Show("La contraseña debe tener al menos 4 caracteres.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            return true;
         }
 
         private bool UsuarioExiste(string usuarioBuscado)
@@ -37,51 +36,13 @@ namespace SistemaMesaPartes
             {
                 while (fs.Position < fs.Length)
                 {
-                    Usuario u = new Usuario();
-                    u.NombreUsuario = br.ReadString();
-                    u.Clave = br.ReadString();
-
-                    if (u.NombreUsuario.Equals(usuarioBuscado, StringComparison.OrdinalIgnoreCase))
-                    {
+                    string u = br.ReadString();
+                    string c = br.ReadString();
+                    if (u.Equals(usuarioBuscado, StringComparison.OrdinalIgnoreCase))
                         return true;
-                    }
                 }
             }
             return false;
-        }
-
-        private void btnRegistrar_Click(object sender, EventArgs e)
-        {
-            string usuario = txtUsuario.Text.Trim();
-            string clave = txtClave.Text.Trim();
-
-            if (!ValidarCampos(usuario, clave)) return;
-
-            if (UsuarioExiste(usuario))
-            {
-                MessageBox.Show("Ese nombre de usuario ya está registrado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            try
-            {
-                using (FileStream fs = new FileStream(rutaUsuarios, FileMode.Append, FileAccess.Write))
-                using (BinaryWriter bw = new BinaryWriter(fs))
-                {
-                    Usuario nuevo = new Usuario();
-                    nuevo.NombreUsuario = usuario;
-                    nuevo.Clave = clave;
-
-                    bw.Write(nuevo.NombreUsuario);
-                    bw.Write(nuevo.Clave);
-                }
-
-                MessageBox.Show("¡Usuario registrado con éxito! Ahora dale clic a Ingresar.", "Registro Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al guardar usuario: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
@@ -89,52 +50,77 @@ namespace SistemaMesaPartes
             string usuario = txtUsuario.Text.Trim();
             string clave = txtClave.Text.Trim();
 
-            if (!ValidarCampos(usuario, clave)) return;
+            if (string.IsNullOrWhiteSpace(usuario) || string.IsNullOrWhiteSpace(clave))
+            {
+                MessageBox.Show("Ingrese usuario y contraseña.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             if (!File.Exists(rutaUsuarios))
             {
-                MessageBox.Show("No hay usuarios registrados aún. Regístrese primero.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("No hay usuarios registrados.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             bool accesoConcedido = false;
+            string usuarioReal = "";
 
-            try
+            using (FileStream fs = new FileStream(rutaUsuarios, FileMode.Open, FileAccess.Read))
+            using (BinaryReader br = new BinaryReader(fs))
             {
-                using (FileStream fs = new FileStream(rutaUsuarios, FileMode.Open, FileAccess.Read))
-                using (BinaryReader br = new BinaryReader(fs))
+                while (fs.Position < fs.Length)
                 {
-                    while (fs.Position < fs.Length)
-                    {
-                        Usuario u = new Usuario();
-                        u.NombreUsuario = br.ReadString();
-                        u.Clave = br.ReadString();
+                    string u = br.ReadString();
+                    string c = br.ReadString();
 
-                        if (u.NombreUsuario.Equals(usuario, StringComparison.OrdinalIgnoreCase) && u.Clave == clave)
-                        {
-                            accesoConcedido = true;
-                            break;
-                        }
+                    if (u.Equals(usuario, StringComparison.OrdinalIgnoreCase) && c == clave)
+                    {
+                        accesoConcedido = true;
+                        usuarioReal = u;
+                        break;
                     }
                 }
-
-                if (accesoConcedido)
-                {
-                    MessageBox.Show("Bienvenido(a) al sistema, " + usuario, "Acceso Concedido", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    FormPrincipal menu = new FormPrincipal();
-                    menu.Show();
-                    this.Hide();
-                }
-                else
-                {
-                    MessageBox.Show("Usuario o contraseña incorrectos.", "Error de acceso", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
             }
-            catch (Exception ex)
+
+            if (accesoConcedido)
             {
-                MessageBox.Show("Error al leer archivo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Hide();
+                FormPrincipal principal = new FormPrincipal(usuarioReal);
+                principal.ShowDialog();
+                txtClave.Clear();
+                this.Show();
             }
+            else
+            {
+                MessageBox.Show("Usuario o contraseña incorrectos.", "Acceso Denegado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnRegistrar_Click(object sender, EventArgs e)
+        {
+            string usuario = txtUsuario.Text.Trim();
+            string clave = txtClave.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(usuario) || string.IsNullOrWhiteSpace(clave))
+            {
+                MessageBox.Show("Complete usuario y contraseña para registrarse.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (UsuarioExiste(usuario))
+            {
+                MessageBox.Show("Ese nombre de usuario ya existe.", "Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            using (FileStream fs = new FileStream(rutaUsuarios, FileMode.Append, FileAccess.Write))
+            using (BinaryWriter bw = new BinaryWriter(fs))
+            {
+                bw.Write(usuario);
+                bw.Write(clave);
+            }
+
+            MessageBox.Show("Usuario registrado correctamente. Ahora puede ingresar.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
