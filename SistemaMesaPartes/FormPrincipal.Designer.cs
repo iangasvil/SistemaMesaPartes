@@ -41,9 +41,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(165, 41);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(391, 25);
+            this.label1.Size = new System.Drawing.Size(419, 25);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Mesa de Partes Digital - Menú Principal";
+            this.label1.Text = "🏛️ Mesa de Partes Digital - Menú Principal";
             // 
             // btnIrRegistro
             // 
@@ -96,7 +96,7 @@
             this.Controls.Add(this.btnIrRegistro);
             this.Controls.Add(this.label1);
             this.Name = "FormPrincipal";
-            this.Text = "Form";
+            this.Text = "Menú Principal - Mesa de Partes Digital";
             this.ResumeLayout(false);
             this.PerformLayout();
 

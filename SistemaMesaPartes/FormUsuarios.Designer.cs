@@ -36,13 +36,14 @@
             this.btnEliminarUsuario = new System.Windows.Forms.Button();
             this.btnVolver = new System.Windows.Forms.Button();
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(206, 67);
+            this.label1.Location = new System.Drawing.Point(206, 80);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(33, 13);
             this.label1.TabIndex = 0;
@@ -51,7 +52,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(206, 117);
+            this.label2.Location = new System.Drawing.Point(206, 130);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 1;
@@ -59,14 +60,14 @@
             // 
             // txtNuevoUsuario
             // 
-            this.txtNuevoUsuario.Location = new System.Drawing.Point(286, 67);
+            this.txtNuevoUsuario.Location = new System.Drawing.Point(286, 80);
             this.txtNuevoUsuario.Name = "txtNuevoUsuario";
             this.txtNuevoUsuario.Size = new System.Drawing.Size(100, 20);
             this.txtNuevoUsuario.TabIndex = 2;
             // 
             // txtNuevaClave
             // 
-            this.txtNuevaClave.Location = new System.Drawing.Point(286, 117);
+            this.txtNuevaClave.Location = new System.Drawing.Point(286, 130);
             this.txtNuevaClave.Name = "txtNuevaClave";
             this.txtNuevaClave.Size = new System.Drawing.Size(100, 20);
             this.txtNuevaClave.TabIndex = 3;
@@ -106,14 +107,25 @@
             this.dgvUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUsuarios.Location = new System.Drawing.Point(97, 234);
             this.dgvUsuarios.Name = "dgvUsuarios";
-            this.dgvUsuarios.Size = new System.Drawing.Size(455, 184);
+            this.dgvUsuarios.Size = new System.Drawing.Size(521, 204);
             this.dgvUsuarios.TabIndex = 7;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(204, 19);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(302, 25);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "👥 Administración de Usuarios";
             // 
             // FormUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.dgvUsuarios);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.btnEliminarUsuario);
@@ -123,7 +135,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FormUsuarios";
-            this.Text = "FormUsuarios";
+            this.Text = "Administración de Usuarios";
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -140,5 +152,6 @@
         private System.Windows.Forms.Button btnEliminarUsuario;
         private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.DataGridView dgvUsuarios;
+        private System.Windows.Forms.Label label3;
     }
 }

@@ -34,9 +34,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(187, 34);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(334, 25);
+            this.label1.Size = new System.Drawing.Size(362, 25);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Inicio de Sesión - Mesa de Partes";
+            this.label1.Text = "🔐 Inicio de Sesión - Mesa de Partes";
             // 
             // label2
             // 
