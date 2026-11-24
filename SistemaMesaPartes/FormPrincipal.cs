@@ -18,7 +18,8 @@ namespace SistemaMesaPartes
 
         private void btnIrGestion_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Módulo de Gestión en construcción.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            FormGestion gestion = new FormGestion();
+            gestion.ShowDialog();
         }
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
