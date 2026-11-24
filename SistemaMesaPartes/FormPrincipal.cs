@@ -12,7 +12,8 @@ namespace SistemaMesaPartes
 
         private void btnIrRegistro_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Módulo de Registro en construcción.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            FormRegistro registro = new FormRegistro();
+            registro.ShowDialog();
         }
 
         private void btnIrGestion_Click(object sender, EventArgs e)
