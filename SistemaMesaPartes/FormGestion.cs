@@ -126,8 +126,10 @@ namespace SistemaMesaPartes
 
             for (int i = 0; i < totalExpedientes; i++)
             {
-                if (arregloExpedientes[i].Dni.Equals(criterio, StringComparison.OrdinalIgnoreCase) ||
-                    arregloExpedientes[i].Codigo.Equals(criterio, StringComparison.OrdinalIgnoreCase))
+                bool coincideDni = arregloExpedientes[i].Dni.IndexOf(criterio, StringComparison.OrdinalIgnoreCase) >= 0;
+                bool coincideCodigo = arregloExpedientes[i].Codigo.IndexOf(criterio, StringComparison.OrdinalIgnoreCase) >= 0;
+
+                if (coincideDni || coincideCodigo)
                 {
                     dgvExpedientes.Rows.Add(
                         arregloExpedientes[i].Codigo,
