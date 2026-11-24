@@ -37,6 +37,16 @@ namespace SistemaMesaPartes
             dgvExpedientes.Columns.Add("colFecha", "Fecha Registro");
 
             dgvExpedientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvExpedientes.RowHeadersVisible = false; // Oculta el margen vacío de la izquierda
+
+            // Reparte el ancho proporcionalmente según el contenido de cada columna
+            dgvExpedientes.Columns["colCodigo"].FillWeight = 65;
+            dgvExpedientes.Columns["colDni"].FillWeight = 70;
+            dgvExpedientes.Columns["colNombres"].FillWeight = 145;
+            dgvExpedientes.Columns["colTipo"].FillWeight = 85;
+            dgvExpedientes.Columns["colAsunto"].FillWeight = 220;
+            dgvExpedientes.Columns["colFecha"].FillWeight = 80;
+
             dgvExpedientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvExpedientes.ReadOnly = true;
             dgvExpedientes.AllowUserToAddRows = false;
