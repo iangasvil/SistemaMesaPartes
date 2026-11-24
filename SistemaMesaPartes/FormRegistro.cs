@@ -23,7 +23,7 @@ namespace SistemaMesaPartes
 
         private string GenerarSiguienteCodigo()
         {
-            int totalRegistros = 0;
+            int maximoNumero = 0;
 
             if (File.Exists(rutaExpedientes))
             {
@@ -32,19 +32,24 @@ namespace SistemaMesaPartes
                 {
                     while (fs.Position < fs.Length)
                     {
-                        br.ReadString(); // Codigo
+                        string cod = br.ReadString(); // Codigo
                         br.ReadString(); // Dni
                         br.ReadString(); // Nombres
                         br.ReadString(); // TipoDocumento
                         br.ReadString(); // Asunto
                         br.ReadString(); // FechaRegistro
-                        totalRegistros++;
+
+                        string soloNumero = cod.Replace("EXP-", "");
+                        int num;
+                        if (int.TryParse(soloNumero, out num) && num > maximoNumero)
+                        {
+                            maximoNumero = num;
+                        }
                     }
                 }
             }
 
-            int siguienteNumero = totalRegistros + 1;
-            return "EXP-" + siguienteNumero.ToString("D3");
+            return "EXP-" + (maximoNumero + 1).ToString("D3");
         }
 
         private void CargarTiposDocumento()

@@ -40,7 +40,7 @@ namespace SistemaMesaPartes
 
         private void btnIrGestion_Click(object sender, EventArgs e)
         {
-            FormGestion gestion = new FormGestion();
+            FormGestion gestion = new FormGestion(usuarioActual);
             gestion.ShowDialog();
         }
 

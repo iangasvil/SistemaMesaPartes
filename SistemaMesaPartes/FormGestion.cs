@@ -9,6 +9,7 @@ namespace SistemaMesaPartes
         private string rutaExpedientes = "expedientes.dat";
         private Expediente[] arregloExpedientes;
         private int totalExpedientes = 0;
+        private string usuarioActual;
 
         public FormGestion()
         {
@@ -16,6 +17,13 @@ namespace SistemaMesaPartes
             ConfigurarTabla();
             CargarDesdeArchivo();
             MostrarEnTabla(arregloExpedientes, totalExpedientes);
+        }
+
+        // Constructor que recibe quién inició sesión para habilitar/bloquear Eliminar
+        public FormGestion(string usuarioLogueado) : this()
+        {
+            usuarioActual = usuarioLogueado;
+            btnEliminar.Enabled = (usuarioActual != null && usuarioActual.Equals("admin", StringComparison.OrdinalIgnoreCase));
         }
 
         private void ConfigurarTabla()
@@ -87,7 +95,6 @@ namespace SistemaMesaPartes
         private void MostrarEnTabla(Expediente[] lista, int cantidad)
         {
             dgvExpedientes.Rows.Clear();
-
             if (lista == null || cantidad == 0) return;
 
             for (int i = 0; i < cantidad; i++)
@@ -171,6 +178,42 @@ namespace SistemaMesaPartes
 
             MostrarEnTabla(arregloExpedientes, totalExpedientes);
             MessageBox.Show("Expedientes ordenados alfabéticamente por Nombre.", "Ordenamiento Burbuja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        // Eliminar expediente seleccionado (solo habilitado para admin)
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (dgvExpedientes.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Seleccione un expediente de la tabla para eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string codigoSeleccionado = dgvExpedientes.SelectedRows[0].Cells[0].Value.ToString();
+
+            DialogResult confirmacion = MessageBox.Show("¿Seguro que desea eliminar el expediente " + codigoSeleccionado + "?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirmacion != DialogResult.Yes) return;
+
+            using (FileStream fs = new FileStream(rutaExpedientes, FileMode.Create, FileAccess.Write))
+            using (BinaryWriter bw = new BinaryWriter(fs))
+            {
+                for (int i = 0; i < totalExpedientes; i++)
+                {
+                    if (!arregloExpedientes[i].Codigo.Equals(codigoSeleccionado, StringComparison.OrdinalIgnoreCase))
+                    {
+                        bw.Write(arregloExpedientes[i].Codigo);
+                        bw.Write(arregloExpedientes[i].Dni);
+                        bw.Write(arregloExpedientes[i].Nombres);
+                        bw.Write(arregloExpedientes[i].TipoDocumento);
+                        bw.Write(arregloExpedientes[i].Asunto);
+                        bw.Write(arregloExpedientes[i].FechaRegistro);
+                    }
+                }
+            }
+
+            MessageBox.Show("Expediente eliminado correctamente.", "Eliminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            CargarDesdeArchivo();
+            MostrarEnTabla(arregloExpedientes, totalExpedientes);
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
