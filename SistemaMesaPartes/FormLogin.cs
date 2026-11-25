@@ -14,7 +14,6 @@ namespace SistemaMesaPartes
             AsegurarAdminPorDefecto();
         }
 
-        // Crea el usuario maestro "admin" si aún no existe en usuarios.dat
         private void AsegurarAdminPorDefecto()
         {
             if (UsuarioExiste("admin")) return;

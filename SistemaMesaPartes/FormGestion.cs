@@ -19,7 +19,6 @@ namespace SistemaMesaPartes
             MostrarEnTabla(arregloExpedientes, totalExpedientes);
         }
 
-        // Constructor que recibe quién inició sesión para habilitar/bloquear Eliminar
         public FormGestion(string usuarioLogueado) : this()
         {
             usuarioActual = usuarioLogueado;
@@ -37,9 +36,7 @@ namespace SistemaMesaPartes
             dgvExpedientes.Columns.Add("colFecha", "Fecha Registro");
 
             dgvExpedientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvExpedientes.RowHeadersVisible = false; // Oculta el margen vacío de la izquierda
-
-            // Reparte el ancho proporcionalmente según el contenido de cada columna
+            dgvExpedientes.RowHeadersVisible = false; 
             dgvExpedientes.Columns["colCodigo"].FillWeight = 65;
             dgvExpedientes.Columns["colDni"].FillWeight = 70;
             dgvExpedientes.Columns["colNombres"].FillWeight = 145;

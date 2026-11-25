@@ -19,7 +19,6 @@ namespace SistemaMesaPartes
             ConfigurarPermisos();
         }
 
-        // Condicional: solo el administrador tiene habilitada la gestión de usuarios
         private void ConfigurarPermisos()
         {
             if (usuarioActual != null && usuarioActual.Equals("admin", StringComparison.OrdinalIgnoreCase))

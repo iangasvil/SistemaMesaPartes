@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormUsuarios));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtNuevoUsuario = new System.Windows.Forms.TextBox();
@@ -62,19 +63,19 @@
             // 
             this.txtNuevoUsuario.Location = new System.Drawing.Point(286, 80);
             this.txtNuevoUsuario.Name = "txtNuevoUsuario";
-            this.txtNuevoUsuario.Size = new System.Drawing.Size(100, 20);
+            this.txtNuevoUsuario.Size = new System.Drawing.Size(183, 20);
             this.txtNuevoUsuario.TabIndex = 2;
             // 
             // txtNuevaClave
             // 
             this.txtNuevaClave.Location = new System.Drawing.Point(286, 130);
             this.txtNuevaClave.Name = "txtNuevaClave";
-            this.txtNuevaClave.Size = new System.Drawing.Size(100, 20);
+            this.txtNuevaClave.Size = new System.Drawing.Size(183, 20);
             this.txtNuevaClave.TabIndex = 3;
             // 
             // btnRegistrarUsuario
             // 
-            this.btnRegistrarUsuario.Location = new System.Drawing.Point(148, 188);
+            this.btnRegistrarUsuario.Location = new System.Drawing.Point(130, 188);
             this.btnRegistrarUsuario.Name = "btnRegistrarUsuario";
             this.btnRegistrarUsuario.Size = new System.Drawing.Size(75, 23);
             this.btnRegistrarUsuario.TabIndex = 4;
@@ -84,7 +85,7 @@
             // 
             // btnEliminarUsuario
             // 
-            this.btnEliminarUsuario.Location = new System.Drawing.Point(286, 188);
+            this.btnEliminarUsuario.Location = new System.Drawing.Point(431, 188);
             this.btnEliminarUsuario.Name = "btnEliminarUsuario";
             this.btnEliminarUsuario.Size = new System.Drawing.Size(75, 23);
             this.btnEliminarUsuario.TabIndex = 5;
@@ -94,7 +95,7 @@
             // 
             // btnVolver
             // 
-            this.btnVolver.Location = new System.Drawing.Point(438, 188);
+            this.btnVolver.Location = new System.Drawing.Point(530, 188);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(75, 23);
             this.btnVolver.TabIndex = 6;
@@ -124,6 +125,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dgvUsuarios);
@@ -134,6 +136,7 @@
             this.Controls.Add(this.txtNuevoUsuario);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormUsuarios";
             this.Text = "Administración de Usuarios";
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).EndInit();

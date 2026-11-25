@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRegistro));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -102,28 +103,28 @@
             // 
             this.txtCodigo.Location = new System.Drawing.Point(303, 107);
             this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.Size = new System.Drawing.Size(100, 20);
+            this.txtCodigo.Size = new System.Drawing.Size(197, 20);
             this.txtCodigo.TabIndex = 6;
             // 
             // txtDni
             // 
             this.txtDni.Location = new System.Drawing.Point(303, 140);
             this.txtDni.Name = "txtDni";
-            this.txtDni.Size = new System.Drawing.Size(100, 20);
+            this.txtDni.Size = new System.Drawing.Size(197, 20);
             this.txtDni.TabIndex = 7;
             // 
             // txtNombres
             // 
             this.txtNombres.Location = new System.Drawing.Point(303, 174);
             this.txtNombres.Name = "txtNombres";
-            this.txtNombres.Size = new System.Drawing.Size(100, 20);
+            this.txtNombres.Size = new System.Drawing.Size(197, 20);
             this.txtNombres.TabIndex = 8;
             // 
             // txtAsunto
             // 
             this.txtAsunto.Location = new System.Drawing.Point(303, 253);
             this.txtAsunto.Name = "txtAsunto";
-            this.txtAsunto.Size = new System.Drawing.Size(100, 20);
+            this.txtAsunto.Size = new System.Drawing.Size(197, 20);
             this.txtAsunto.TabIndex = 10;
             // 
             // cboTipoDoc
@@ -132,7 +133,7 @@
             this.cboTipoDoc.FormattingEnabled = true;
             this.cboTipoDoc.Location = new System.Drawing.Point(303, 210);
             this.cboTipoDoc.Name = "cboTipoDoc";
-            this.cboTipoDoc.Size = new System.Drawing.Size(121, 21);
+            this.cboTipoDoc.Size = new System.Drawing.Size(197, 21);
             this.cboTipoDoc.TabIndex = 11;
             // 
             // btnGuardar
@@ -159,6 +160,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);
@@ -173,6 +175,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormRegistro";
             this.Text = "Registro de Expediente - Mesa de Partes";
             this.ResumeLayout(false);

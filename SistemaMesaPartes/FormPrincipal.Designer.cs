@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPrincipal));
             this.label1 = new System.Windows.Forms.Label();
             this.btnIrRegistro = new System.Windows.Forms.Button();
             this.btnIrGestion = new System.Windows.Forms.Button();
@@ -47,7 +48,7 @@
             // 
             // btnIrRegistro
             // 
-            this.btnIrRegistro.Location = new System.Drawing.Point(286, 123);
+            this.btnIrRegistro.Location = new System.Drawing.Point(80, 143);
             this.btnIrRegistro.Name = "btnIrRegistro";
             this.btnIrRegistro.Size = new System.Drawing.Size(180, 35);
             this.btnIrRegistro.TabIndex = 1;
@@ -57,7 +58,7 @@
             // 
             // btnIrGestion
             // 
-            this.btnIrGestion.Location = new System.Drawing.Point(286, 197);
+            this.btnIrGestion.Location = new System.Drawing.Point(323, 143);
             this.btnIrGestion.Name = "btnIrGestion";
             this.btnIrGestion.Size = new System.Drawing.Size(180, 35);
             this.btnIrGestion.TabIndex = 2;
@@ -67,7 +68,7 @@
             // 
             // btnCerrarSesion
             // 
-            this.btnCerrarSesion.Location = new System.Drawing.Point(286, 260);
+            this.btnCerrarSesion.Location = new System.Drawing.Point(599, 381);
             this.btnCerrarSesion.Name = "btnCerrarSesion";
             this.btnCerrarSesion.Size = new System.Drawing.Size(180, 35);
             this.btnCerrarSesion.TabIndex = 3;
@@ -77,7 +78,7 @@
             // 
             // btnUsuarios
             // 
-            this.btnUsuarios.Location = new System.Drawing.Point(286, 327);
+            this.btnUsuarios.Location = new System.Drawing.Point(573, 143);
             this.btnUsuarios.Name = "btnUsuarios";
             this.btnUsuarios.Size = new System.Drawing.Size(180, 35);
             this.btnUsuarios.TabIndex = 4;
@@ -89,12 +90,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnUsuarios);
             this.Controls.Add(this.btnCerrarSesion);
             this.Controls.Add(this.btnIrGestion);
             this.Controls.Add(this.btnIrRegistro);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormPrincipal";
             this.Text = "Menú Principal - Mesa de Partes Digital";
             this.ResumeLayout(false);
